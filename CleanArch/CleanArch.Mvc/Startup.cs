@@ -14,6 +14,7 @@ using CleanArch.Mvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CleanArch.Infra.Data.Context;
+using CleanArch.Infra.IoC;
 
 namespace CleanArch.Mvc
 {
@@ -25,6 +26,11 @@ namespace CleanArch.Mvc
         }
 
         public IConfiguration Configuration { get; }
+
+        private static void registerServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -49,6 +55,7 @@ namespace CleanArch.Mvc
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            registerServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +85,6 @@ namespace CleanArch.Mvc
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
+        }        
     }
 }
