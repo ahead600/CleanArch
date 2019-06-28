@@ -7,6 +7,6 @@ namespace CleanArch.Domain.Interfaces
 {
     public interface ICourseRepository
     {
-        Course GetCourse();
+        IEnumerable<Course> GetCourses();
     }
 }
