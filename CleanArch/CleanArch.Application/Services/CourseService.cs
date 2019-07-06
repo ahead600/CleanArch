@@ -9,18 +9,18 @@ namespace CleanArch.Application.Services
 {
     public class CourseService : ICourseService
     {
-        private ICourseRepository _courseServiceRepository;           
+        private ICourseRepository _courseRepository;           
             
         public CourseService(ICourseRepository courseRepository)
         {
-            _courseServiceRepository = courseRepository;
+            _courseRepository = courseRepository;
         }
 
         public CoursesViewModel GetCourses()
         {
             return new CoursesViewModel()
             {
-                Courses = _courseServiceRepository.GetCourses()
+                Courses = _courseRepository.GetCourses()
             };
         }
     }
